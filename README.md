@@ -6,6 +6,11 @@ EduAssistant是一个基于微信小程序的教务系统助手，旨在为学�
 
 ## 🛠 技术栈
 ### 前端
+- 微信小程序原生框架
+- Promise封装的网络请求库
+- JWT身份验证
+- ES6+语法支持
+- PostCSS样式处理
 
 ### 后端
 - Flask: Python Web框架
@@ -35,10 +40,11 @@ EduAssistant是一个基于微信小程序的教务系统助手，旨在为学�
 
 ## 🚀 安装部署
 
+### 后端部署
 1. 克隆项目
 ```bash
 git clone [项目地址]
-cd eduAssistant-api
+cd eduAssistant-api/backend
 ```
 
 2. 创建虚拟环境并安装依赖
@@ -52,7 +58,7 @@ pip install -r requirements.txt
 3. 配置环境变量
 创建.env文件，添加以下配置：
 ```
-DATABASE_URL=mysql+pymysql://username:password@localhost/edu_assistant
+DATABASE_URL=mysql+pymysql://用户名:密码@localhost/edu_assistant
 JWT_SECRET_KEY=your-secret-key
 ```
 
@@ -65,35 +71,27 @@ python init_db.py
 ```bash
 python app.py
 ```
+服务将在 http://localhost:5000 运行
 
-## 📚 API接口文档
+### 前端部署
+1. 安装微信开发者工具
+从[微信官方](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)下载并安装
 
-### 认证相关
-- POST `/api/auth/wechat-login`: 微信登录
-- POST `/api/auth/bind-account`: 绑定教务系统账号
+2. 导入项目
+- 打开微信开发者工具
+- 选择「导入项目」
+- 选择项目目录 `eduAssistant-api/frontend`
+- 填入小程序AppID（在project.config.json中配置）
 
-### 课表相关
-- GET `/api/schedule`: 获取课表
-- POST `/api/schedule/custom`: 添加自定义课程
+3. 配置开发环境
+- 修改 `utils/api.js` 中的 `BASE_URL` 为后端服务地址
 
-### 成绩相关
-- GET `/api/scores`: 查询成绩
+4. 预览和调试
+- 点击开发者工具的「预览」按钮，使用微信扫码即可在手机上预览
+- 可以使用开发者工具的调试功能进行代码调试
 
-### 选课相关
-- GET `/api/courses/available`: 获取可选课程
-- POST `/api/courses/select`: 选课
+## 📄 许可证
 
-### 考试相关
-- GET `/api/exams`: 获取考试安排
-
-### 个人信息
-- GET `/api/user/profile`: 获取个人信息
-
-### 公告相关
-- GET `/api/announcements`: 获取系统公告
-
-## 📄 开源协议
-
-MIT License
+[MIT License](LICENSE)
 
    

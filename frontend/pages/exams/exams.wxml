@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="exam-list">
+    <block wx:for="{{exams}}" wx:key="index">
+      <view class="exam-item">
+        <view class="exam-header">
+          <view class="course-name">{{item.course_name}}</view>
+          <view class="exam-status {{item.status}}">{{item.status === 'upcoming' ? '即将到来' : '已完成'}}</view>
+        </view>
+        <view class="exam-info">
+          <view class="info-row">
+            <text class="info-label">时间：</text>
+            <text class="info-value">{{item.time}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">地点：</text>
+            <text class="info-value">{{item.location}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{exams.length === 0}}" class="empty-tip">暂无考试安排</view>
+  </view>
+</view>

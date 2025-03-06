@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="score-list">
+    <block wx:for="{{scores}}" wx:key="index">
+      <view class="score-item">
+        <view class="course-name">{{item.course_name}}</view>
+        <view class="score {{item.score >= 60 ? 'text-success' : 'text-danger'}}">{{item.score}}</view>
+      </view>
+    </block>
+    <view wx:if="{{scores.length === 0}}" class="empty-tip">暂无成绩数据</view>
+  </view>
+</view>

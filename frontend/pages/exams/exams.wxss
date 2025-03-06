@@ -1,0 +1,80 @@
+/* pages/exams/exams.wxss */
+.container {
+  padding: 20rpx;
+}
+
+.exam-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.exam-item {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8rpx 32rpx 0 rgba(31, 38, 135, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exam-item:hover {
+  transform: translateY(-6rpx);
+  box-shadow: 0 20rpx 40rpx 0 rgba(31, 38, 135, 0.1);
+}
+
+.exam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.course-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.exam-status {
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.upcoming {
+  background: rgba(7, 193, 96, 0.1);
+  color: #07c160;
+}
+
+.completed {
+  background: rgba(153, 153, 153, 0.1);
+  color: #999;
+}
+
+.exam-info {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 16rpx;
+  padding: 20rpx;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  color: #666;
+  width: 100rpx;
+}
+
+.info-value {
+  color: #333;
+  flex: 1;
+}

@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="profile-header">
+    <view class="avatar-container">
+      <image class="avatar" src="/assets/icons/profile.png" mode="aspectFill"></image>
+    </view>
+  </view>
+
+  <view class="info-list" wx:if="{{userInfo}}">
+    <view class="info-item">
+      <view class="info-label">学号</view>
+      <view class="info-value">{{userInfo.student_id}}</view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">姓名</view>
+      <view class="info-value">{{userInfo.name}}</view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">院系</view>
+      <view class="info-value">{{userInfo.department}}</view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">班级</view>
+      <view class="info-value">{{userInfo.class_name}}</view>
+    </view>
+  </view>
+  <view wx:else class="empty-tip">暂无个人信息</view>
+</view>

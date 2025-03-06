@@ -1,0 +1,404 @@
+.container {
+  padding: 30rpx;
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.week-selector {
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.current-week {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.weeks-scroll {
+  white-space: nowrap;
+}
+
+.weeks {
+  display: inline-flex;
+  padding: 8rpx;
+}
+
+.week-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 8rpx;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  color: #666;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10rpx);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.week-item.active {
+  background: #07c160;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4rpx 16rpx rgba(7, 193, 96, 0.3);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16rpx;
+}
+
+.add-course-btn,
+.import-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10rpx);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.add-course-btn:active,
+.import-btn:active {
+  transform: scale(0.95);
+}
+
+.add-course-btn image,
+.import-btn image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.timetable-container {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  border-radius: 20rpx;
+  padding: 20rpx;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8rpx 32rpx 0 rgba(31, 38, 135, 0.07);
+}
+
+.timetable-scroll {
+  width: 100%;
+}
+
+.timetable {
+  min-width: 750rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.timetable-header {
+  display: flex;
+  background: rgba(7, 193, 96, 0.1);
+}
+
+.time-column, .day-column {
+  flex: 1;
+  padding: 20rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.time-column {
+  min-width: 120rpx;
+}
+
+.timetable-body {
+  background: #fff;
+}
+
+.time-row {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.time-slot {
+  flex: 1;
+  min-width: 120rpx;
+  padding: 20rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+  background: rgba(7, 193, 96, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.time-text {
+  font-weight: 500;
+  margin-bottom: 4rpx;
+}
+
+.time-detail {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.course-slot {
+  flex: 1;
+  min-height: 160rpx;
+  padding: 10rpx;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.course-slot.has-course {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.course-card {
+  width: 100%;
+  height: 100%;
+  padding: 16rpx;
+  border-radius: 12rpx;
+  background: rgba(7, 193, 96, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.course-slot:active .course-card {
+  transform: scale(0.98);
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.course-slot:active {
+  transform: scale(1.05);
+}
+
+.course-slot.custom-course {
+  background: rgba(64, 169, 255, 0.1);
+  border-left: 8rpx solid #40a9ff;
+}
+
+.course-name {
+  font-size: 24rpx;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+  text-align: center;
+}
+
+.course-location {
+  font-size: 20rpx;
+  color: #666;
+  text-align: center;
+}
+
+.edit-icon {
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.course-slot:hover .edit-icon {
+  opacity: 1;
+}
+
+.course-edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.course-edit-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  width: 80%;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.close-btn {
+  font-size: 40rpx;
+  color: #999;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 30rpx;
+}
+
+.form-item {
+  margin-bottom: 20rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.save-btn {
+  background: #07c160;
+  color: #fff;
+  border: none;
+  width: 100%;
+  margin-top: 30rpx;
+}
+
+page {
+  background: linear-gradient(135deg, #07c160 0%, #00796b 100%);
+  min-height: 100vh;
+}
+
+.course-slot:active {
+  transform: scale(1.05);
+}
+
+.course-slot.custom-course {
+  background: rgba(64, 169, 255, 0.1);
+  border-left: 8rpx solid #40a9ff;
+}
+
+.course-name {
+  font-size: 24rpx;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+  text-align: center;
+}
+
+.course-location {
+  font-size: 20rpx;
+  color: #666;
+  text-align: center;
+}
+
+.edit-icon {
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.course-slot:hover .edit-icon {
+  opacity: 1;
+}
+
+.course-edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.course-edit-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  width: 80%;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.close-btn {
+  font-size: 40rpx;
+  color: #999;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 30rpx;
+}
+
+.form-item {
+  margin-bottom: 20rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.save-btn {
+  background: #07c160;
+  color: #fff;
+  border: none;
+  width: 100%;
+  margin-top: 30rpx;
+}
+
+page {
+  background: linear-gradient(135deg, #07c160 0%, #00796b 100%);
+  min-height: 100vh;
+}

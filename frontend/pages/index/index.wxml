@@ -1,0 +1,116 @@
+<view class="container">
+  <block wx:if="{{!isLoggedIn}}">
+    <view class="login-container">
+      <block wx:if="{{isBinding}}">
+        <view class="binding-form">
+          <view class="form-header">
+            <image class="form-logo" src="/assets/icons/profile.png" mode="aspectFit"></image>
+            <text class="form-title">绑定教务系统账号</text>
+            <text class="form-subtitle">绑定后可查看课表、成绩等信息</text>
+          </view>
+          <view class="form-group">
+            <view class="input-group">
+              <view class="input-icon">
+                <image src="/assets/icons/profile.png" mode="aspectFit"></image>
+              </view>
+              <input class="input-field" type="text" placeholder="请输入学号" bindinput="onStudentIdInput" />
+            </view>
+            <view class="input-group">
+              <view class="input-icon">
+                <image src="/assets/icons/profile.png" mode="aspectFit"></image>
+              </view>
+              <input class="input-field" type="password" placeholder="请输入密码" bindinput="onPasswordInput" />
+            </view>
+          </view>
+          <button class="bind-button" hover-class="bind-button-hover" type="primary" bindtap="bindAccount">立即绑定</button>
+          <view class="privacy-container">
+            <image class="privacy-icon" src="/assets/icons/profile.png" mode="aspectFit"></image>
+            <text class="privacy-tip">我们会严格保护您的账号安全</text>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="login-tips">
+          <text>正在登录中...</text>
+        </view>
+      </block>
+    </view>
+  </block>
+
+  <block wx:else>
+    <!-- 公告栏 -->
+    <view class="announcement-bar">
+      <view class="announcement-icon">
+        <image src="/assets/icons/announcement.png" mode="aspectFit"></image>
+      </view>
+      <view class="announcement-text">
+        <text wx:if="{{announcements.length > 0}}">
+          {{announcements[0].title}}: {{announcements[0].content}}
+        </text>
+        <text wx:else>暂无公告</text>
+      </view>
+    </view>
+
+  <!-- 今日课表 -->
+  <view class="today-schedule">
+    <text class="section-title">今日课表</text>
+    <block wx:if="{{todaySchedule.length > 0}}">
+      <view wx:for="{{todaySchedule}}" wx:key="id" class="schedule-item {{index === 0 ? 'current' : ''}}">
+        <view class="course-info">
+          <text class="course-name">{{item.name}}</text>
+          <text class="course-time">{{item.start_section}}-{{item.end_section}}节</text>
+        </view>
+        <text class="location">{{item.location}}</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="empty-schedule">
+        <text>今日暂无课程安排</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-grid">
+    <navigator url="/pages/schedule/schedule" class="menu-item">
+      <image src="/assets/icons/schedule.png" mode="aspectFit"></image>
+      <view class="menu-content">
+        <text class="menu-title">课表查询</text>
+        <text class="menu-description">查看每周课程安排，轻松掌握上课时间和地点</text>
+      </view>
+    </navigator>
+
+    <navigator url="/pages/grades/grades" class="menu-item">
+      <image src="/assets/icons/grades.png" mode="aspectFit"></image>
+      <view class="menu-content">
+        <text class="menu-title">成绩查询</text>
+        <text class="menu-description">实时查看各科目成绩，了解学习进度和表现</text>
+      </view>
+    </navigator>
+
+    <navigator url="/pages/course-selection/course-selection" class="menu-item">
+      <image src="/assets/icons/course.png" mode="aspectFit"></image>
+      <view class="menu-content">
+        <text class="menu-title">选课系统</text>
+        <text class="menu-description">便捷选择课程，合理规划学习路径</text>
+      </view>
+    </navigator>
+
+    <navigator url="/pages/exams/exams" class="menu-item">
+      <image src="/assets/icons/exam.png" mode="aspectFit"></image>
+      <view class="menu-content">
+        <text class="menu-title">考试安排</text>
+        <text class="menu-description">及时了解考试时间和地点，做好考试准备</text>
+      </view>
+    </navigator>
+
+    <navigator url="/pages/profile/profile" class="menu-item">
+      <image src="/assets/icons/profile.png" mode="aspectFit"></image>
+      <view class="menu-content">
+        <text class="menu-title">个人信息</text>
+        <text class="menu-description">管理个人资料，随时更新个人信息</text>
+      </view>
+    </navigator>
+  </view>
+  </block>
+</view>

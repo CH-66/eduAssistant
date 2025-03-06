@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="search-bar">
+    <input type="text" placeholder="搜索课程" bindinput="searchCourse" />
+    <icon type="search" size="18"></icon>
+  </view>
+  
+  <view class="filter-bar">
+    <view class="filter-item {{currentFilter === 'all' ? 'active' : ''}}" bindtap="setFilter" data-filter="all">全部课程</view>
+    <view class="filter-item {{currentFilter === 'required' ? 'active' : ''}}" bindtap="setFilter" data-filter="required">必修课程</view>
+    <view class="filter-item {{currentFilter === 'elective' ? 'active' : ''}}" bindtap="setFilter" data-filter="elective">选修课程</view>
+  </view>
+  
+  <view class="course-list">
+    <view class="course-item" wx:for="{{courses}}" wx:key="id">
+      <view class="course-header">
+        <view class="course-name">{{item.name}}</view>
+        <view class="course-credits">{{item.credits}}学分</view>
+      </view>
+      <view class="course-info">
+        <view class="info-row">
+          <text class="info-label">教师：</text>
+          <text class="info-value">{{item.teacher}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">时间：</text>
+          <text class="info-value">{{item.time}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">地点：</text>
+          <text class="info-value">{{item.location}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">容量：</text>
+          <text class="info-value">{{item.enrolled}}/{{item.capacity}}</text>
+        </view>
+      </view>
+      <view class="course-actions">
+        <button class="select-btn {{item.selected ? 'selected' : ''}}" bindtap="toggleCourseSelection" data-id="{{item.id}}">
+          {{item.selected ? '退选' : '选课'}}
+        </button>
+      </view>
+    </view>
+  </view>
+  
+  <view class="selected-courses-summary" wx:if="{{selectedCourses.length > 0}}">
+    <view class="summary-header">
+      <text>已选课程：{{selectedCourses.length}}门</text>
+      <text>总学分：{{totalCredits}}</text>
+    </view>
+    <button class="submit-btn" bindtap="submitSelection">提交选课</button>
+  </view>
+</view>
