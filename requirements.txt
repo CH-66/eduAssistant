@@ -7,5 +7,3 @@ Werkzeug==2.3.7
 Python-dotenv==1.0.0
 flask-cors==4.0.0
 mysql-connector-python==8.1.0
-# 添加缺失的包
-pymysql==1.1.0

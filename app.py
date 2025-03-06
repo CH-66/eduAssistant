@@ -28,9 +28,16 @@ def wechat_login():
     print(wechat_id)
     user = User.query.filter_by(wechat_id=wechat_id).first()
     if user:
-        access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity=str(user.id))
         return jsonify({'token': access_token})
-    return jsonify({'message': '请先绑定教务系统账号'}), 401
+    
+    # 创建临时用户，不强制要求绑定教务系统账号
+    new_user = User(wechat_id=wechat_id)
+    db.session.add(new_user)
+    db.session.commit()
+    
+    access_token = create_access_token(identity=str(new_user.id))
+    return jsonify({'token': access_token, 'is_bound': False})
 
 @app.route('/api/auth/bind-account', methods=['POST'])
 def bind_account():
@@ -52,7 +59,7 @@ def bind_account():
     db.session.add(user)
     db.session.commit()
     
-    access_token = create_access_token(identity=user.id)
+    access_token = create_access_token(identity=str(user.id))
     return jsonify({'token': access_token})
 
 # 课表相关接口
